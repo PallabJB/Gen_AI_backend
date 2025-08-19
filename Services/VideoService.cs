@@ -1,26 +1,20 @@
-﻿using GenAIAPP.api.Services;
-using GenAIAPP.API.Services;
+﻿using GenAIAPP.API.Services;
 using Xabe.FFmpeg;
 
-namespace GenAIAPP.API.Services
+namespace GenAI.API.Services
 {
     public class VideoService : IVideoService
     {
         private readonly IWhisperService _whisperService;
 
-        public VideoService(IWhisperService whisperService, IConfiguration configuration)
+        public VideoService(IWhisperService whisperService)
         {
             _whisperService = whisperService;
-
-            // Get FFmpeg path from configuration or environment variable
-            var ffmpegPath = configuration["C:\\ffmpeg-7.1.1-essentials_build\\ffmpeg-7.1.1-essentials_build\\bin"]
-                             ?? Environment.GetEnvironmentVariable("ffmpegPath");
-
+            // Ensure FFmpeg executables path is set correctly
+            var ffmpegPath = "C:\\ffmpeg-7.1.1-essentials_build\\ffmpeg-7.1.1-essentials_build\\bin"; // Replace with the actual path to FFmpeg executables
             if (string.IsNullOrWhiteSpace(ffmpegPath) || !Directory.Exists(ffmpegPath))
             {
-                throw new DirectoryNotFoundException(
-                    "FFmpeg executables not found. Please set 'FFmpeg:Path' in configuration or add to PATH."
-                );
+                throw new DirectoryNotFoundException("Please add FFmpeg executables to your PATH variable or specify a valid directory path.");
             }
 
             FFmpeg.SetExecutablesPath(ffmpegPath);
@@ -31,16 +25,16 @@ namespace GenAIAPP.API.Services
             try
             {
                 var audioPath = Path.ChangeExtension(videoPath, ".mp3");
-
                 var conversion = await FFmpeg.Conversions.FromSnippet.ExtractAudio(videoPath, audioPath);
                 await conversion.Start();
-
                 return await _whisperService.TranscribeAudioAsync(audioPath);
             }
             catch (Exception ex)
             {
-                throw new ApplicationException($"Error extracting audio: {ex.Message}", ex);
+
+                throw;
             }
+
         }
     }
 }

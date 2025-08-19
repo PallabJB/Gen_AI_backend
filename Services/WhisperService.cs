@@ -1,10 +1,9 @@
-﻿using GenAIAPP.api.Services;
+﻿using GenAI.API.Models;
 using GenAIAPP.API.Models;
-using GenAIAPP.API.Services;
 using System.Net.Http.Headers;
 using System.Text.Json;
 
-namespace GenAIAPP.API.Services
+namespace GenAI.API.Services
 {
     public class WhisperService : IWhisperService
     {
@@ -28,10 +27,7 @@ namespace GenAIAPP.API.Services
             _httpClient.DefaultRequestHeaders.Authorization =
                 new AuthenticationHeaderValue("Bearer", _apiKey);
 
-            var response = await _httpClient.PostAsync(
-                "https://api.openai.com/v1/audio/transcriptions",
-                multipart
-            );
+            var response = await _httpClient.PostAsync("https://api.openai.com/v1/audio/transcriptions", multipart);
             response.EnsureSuccessStatusCode();
 
             var json = await response.Content.ReadAsStringAsync();

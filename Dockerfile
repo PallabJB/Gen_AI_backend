@@ -1,17 +1,30 @@
-﻿# Use the official .NET SDK image for building
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
-WORKDIR /src
+﻿# See https://aka.ms/customizecontainer to learn how to customize your debug container and how Visual Studio uses this Dockerfile to build your images for faster debugging.
 
-# Copy csproj and restore dependencies
-COPY *.csproj ./
-RUN dotnet restore "./GenAIAPP.api.csproj"
-
-# Copy everything else and build
-COPY . ./
-RUN dotnet publish "./GenAIAPP.api.csproj" -c Release -o /app/publish
-
-# Runtime image
-FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
+# This stage is used when running from VS in fast mode (Default for Debug configuration)
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
+USER $APP_UID
 WORKDIR /app
-COPY --from=build /app/publish .
-ENTRYPOINT ["dotnet", "GenAIAPP.api.dll"]
+EXPOSE 8080
+EXPOSE 8081
+
+
+# This stage is used to build the service project
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+ARG BUILD_CONFIGURATION=Release
+WORKDIR /src
+COPY ["GenAI.API/GenAI.API.csproj", "GenAI.API/"]
+RUN dotnet restore "./GenAI.API/GenAI.API.csproj"
+COPY . .
+WORKDIR "/src/GenAI.API"
+RUN dotnet build "./GenAI.API.csproj" -c $BUILD_CONFIGURATION -o /app/build
+
+# This stage is used to publish the service project to be copied to the final stage
+FROM build AS publish
+ARG BUILD_CONFIGURATION=Release
+RUN dotnet publish "./GenAI.API.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+
+# This stage is used in production or when running from VS in regular mode (Default when not using the Debug configuration)
+FROM base AS final
+WORKDIR /app
+COPY --from=publish /app/publish .
+ENTRYPOINT ["dotnet", "GenAI.API.dll"]

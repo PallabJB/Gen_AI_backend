@@ -1,9 +1,10 @@
-﻿namespace GenAIAPP.API.Models
-{
-    public class UploadRequest
-    {
-        public IFormFile File { get; set; }
+﻿using System.Text.Json.Serialization;
 
-        public string OutputType { get; set; }
+namespace GenAI.API.Models
+{
+    public class OpenAiResponse
+    {
+        [JsonPropertyName("text")]
+        public string Text { get; set; }
     }
 }

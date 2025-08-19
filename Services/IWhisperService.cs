@@ -1,4 +1,4 @@
-﻿namespace GenAIAPP.api.Services
+﻿namespace GenAI.API.Services
 {
     public interface IWhisperService
     {
