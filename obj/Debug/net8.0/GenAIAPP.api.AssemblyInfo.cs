@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("GenAIAPP.api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fc8d14dd6a8de8a6ca85d082f0702f2c824213a0")]
 [assembly: System.Reflection.AssemblyProductAttribute("GenAIAPP.api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("GenAIAPP.api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
