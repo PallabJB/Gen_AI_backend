@@ -1,4 +1,4 @@
-﻿namespace GenAI.API.Services
+﻿namespace GenAIAPP.API.Services
 {
     public interface IVideoService
     {

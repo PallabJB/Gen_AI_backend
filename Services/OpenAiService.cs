@@ -3,7 +3,7 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Text.Json;
 
-namespace GenAI.API.Services
+namespace GenAIAPP.API.Services
 {
     public class OpenAiService : IOpenAiService
     {

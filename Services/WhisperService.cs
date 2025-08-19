@@ -1,9 +1,9 @@
-﻿using GenAI.API.Models;
+﻿using GenAIAPP.API.Models;
 using GenAIAPP.API.Models;
 using System.Net.Http.Headers;
 using System.Text.Json;
 
-namespace GenAI.API.Services
+namespace GenAIAPP.API.Services
 {
     public class WhisperService : IWhisperService
     {
