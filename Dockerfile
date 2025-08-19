@@ -12,7 +12,7 @@ EXPOSE 8081
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["GenAIAPP.api/GenAIAPP.api.csproj", "GenAIAPP.api/"]
+COPY ["GenAIAPP.api/GenAIAPP.api/GenAIAPP.api.csproj", "GenAIAPP.api/"]
 RUN dotnet restore "./GenAIAPP.api/GenAIAPP.api.csproj"
 COPY . .
 WORKDIR "/src/GenAIAPP.api"
