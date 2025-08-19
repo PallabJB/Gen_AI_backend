@@ -1,5 +1,4 @@
-﻿using GenAIAPP.api.Models;
-using GenAIAPP.api.Services;
+﻿using GenAIAPP.api.Services;
 using GenAIAPP.API.Models;
 using GenAIAPP.API.Services;
 using System.Net.Http.Headers;
@@ -29,7 +28,10 @@ namespace GenAIAPP.API.Services
             _httpClient.DefaultRequestHeaders.Authorization =
                 new AuthenticationHeaderValue("Bearer", _apiKey);
 
-            var response = await _httpClient.PostAsync("https://api.openai.com/v1/audio/transcriptions", multipart);
+            var response = await _httpClient.PostAsync(
+                "https://api.openai.com/v1/audio/transcriptions",
+                multipart
+            );
             response.EnsureSuccessStatusCode();
 
             var json = await response.Content.ReadAsStringAsync();

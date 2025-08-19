@@ -2,7 +2,7 @@
 using System.Text.Json;
 using System.Text;
 
-namespace GenAI.API.Services
+namespace GenAIAPP.API.Services
 {
     public class OpenAiService : IOpenAiService
     {

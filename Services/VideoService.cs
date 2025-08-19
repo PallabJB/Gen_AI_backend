@@ -1,20 +1,26 @@
 ﻿using GenAIAPP.api.Services;
+using GenAIAPP.API.Services;
 using Xabe.FFmpeg;
 
-namespace GenAI.API.Services
+namespace GenAIAPP.API.Services
 {
     public class VideoService : IVideoService
     {
         private readonly IWhisperService _whisperService;
 
-        public VideoService(IWhisperService whisperService)
+        public VideoService(IWhisperService whisperService, IConfiguration configuration)
         {
             _whisperService = whisperService;
-            // Ensure FFmpeg executables path is set correctly
-            var ffmpegPath = "C:\\ffmpeg-7.1.1-essentials_build\\ffmpeg-7.1.1-essentials_build\\bin"; // Replace with the actual path to FFmpeg executables
+
+            // Get FFmpeg path from configuration or environment variable
+            var ffmpegPath = configuration["C:\\ffmpeg-7.1.1-essentials_build\\ffmpeg-7.1.1-essentials_build\\bin"]
+                             ?? Environment.GetEnvironmentVariable("ffmpegPath");
+
             if (string.IsNullOrWhiteSpace(ffmpegPath) || !Directory.Exists(ffmpegPath))
             {
-                throw new DirectoryNotFoundException("Please add FFmpeg executables to your PATH variable or specify a valid directory path.");
+                throw new DirectoryNotFoundException(
+                    "FFmpeg executables not found. Please set 'FFmpeg:Path' in configuration or add to PATH."
+                );
             }
 
             FFmpeg.SetExecutablesPath(ffmpegPath);
@@ -25,16 +31,16 @@ namespace GenAI.API.Services
             try
             {
                 var audioPath = Path.ChangeExtension(videoPath, ".mp3");
+
                 var conversion = await FFmpeg.Conversions.FromSnippet.ExtractAudio(videoPath, audioPath);
                 await conversion.Start();
+
                 return await _whisperService.TranscribeAudioAsync(audioPath);
             }
             catch (Exception ex)
             {
-
-                throw;
+                throw new ApplicationException($"Error extracting audio: {ex.Message}", ex);
             }
-
         }
     }
 }
