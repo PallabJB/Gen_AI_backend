@@ -7,24 +7,27 @@ WORKDIR /app
 EXPOSE 8080
 EXPOSE 8081
 
-
 # This stage is used to build the service project
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["GenAI.API/GenAI.API.csproj", "GenAI.API/"]
-RUN dotnet restore "./GenAI.API/GenAI.API.csproj"
+
+# Copy csproj and restore (⚡ FIXED HERE)
+COPY ["GenAIAPP.api/GenAIAPP.api.csproj", "GenAIAPP.api/"]
+RUN dotnet restore "./GenAIAPP.api/GenAIAPP.api.csproj"
+
+# Copy everything else
 COPY . .
-WORKDIR "/src/GenAI.API"
-RUN dotnet build "./GenAI.API.csproj" -c $BUILD_CONFIGURATION -o /app/build
+WORKDIR "/src/GenAIAPP.api"
+RUN dotnet build "./GenAIAPP.api.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 # This stage is used to publish the service project to be copied to the final stage
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "./GenAI.API.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "./GenAIAPP.api.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
 # This stage is used in production or when running from VS in regular mode (Default when not using the Debug configuration)
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "GenAI.API.dll"]
+ENTRYPOINT ["dotnet", "GenAIAPP.api.dll"]
