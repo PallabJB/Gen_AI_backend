@@ -1,4 +1,4 @@
-﻿namespace GenAIAPP.api.Models
+﻿namespace GenAIAPP.API.Models
 {
     public class UploadRequest
     {
