@@ -14,7 +14,7 @@ WORKDIR /src
 
 # Copy csproj and restore (⚡ no folder, just file)
 
-COPY ["GenAIAPP.api/GenAIAPP.api.csproj", "GenAIAPP.api/"]
+COPY ["GenAIAPP.api/GenAIAPP.api/GenAIAPP.api.csproj", "GenAIAPP.api/"]
 RUN dotnet restore "./GenAIAPP.api/GenAIAPP.api.csproj"
 
 
