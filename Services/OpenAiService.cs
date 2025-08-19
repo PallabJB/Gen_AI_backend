@@ -1,9 +1,9 @@
-﻿using GenAIAPP.API.Services;
+﻿using GenAIAPP.api.Services;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Text.Json;
 
-namespace GenAIAPP.API.Services
+namespace GenAIAPP.api.Services
 {
     public class OpenAiService : IOpenAiService
     {

@@ -1,4 +1,4 @@
-﻿namespace GenAIAPP.API.Services
+﻿namespace GenAIAPP.api.Services
 {
     public interface IOpenAiService
     {

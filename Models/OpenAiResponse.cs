@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace GenAIAPP.API.Models
+namespace GenAIAPP.api.Models
 {
     public class OpenAiResponse
     {

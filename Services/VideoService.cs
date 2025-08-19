@@ -1,7 +1,7 @@
-﻿using GenAIAPP.API.Services;
+﻿using GenAIAPP.api.Services;
 using Xabe.FFmpeg;
 
-namespace GenAIAPP.API.Services
+namespace GenAIAPP.api.Services
 {
     public class VideoService : IVideoService
     {
