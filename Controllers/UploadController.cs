@@ -1,5 +1,5 @@
-﻿using GenAI.API.Services;
-using GenAIAPP.api.Services;
+﻿using GenAIAPP.api.Services;
+
 using Microsoft.AspNetCore.Mvc;
 
 namespace GenAI.API.Controllers

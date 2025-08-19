@@ -26,10 +26,11 @@ C:\Users\KIIT\source\repos\GenAIAPP.api\GenAIAPP.api\obj\Debug\net8.0\staticweba
 C:\Users\KIIT\source\repos\GenAIAPP.api\GenAIAPP.api\obj\Debug\net8.0\staticwebassets.build.json.cache
 C:\Users\KIIT\source\repos\GenAIAPP.api\GenAIAPP.api\obj\Debug\net8.0\staticwebassets.development.json
 C:\Users\KIIT\source\repos\GenAIAPP.api\GenAIAPP.api\obj\Debug\net8.0\staticwebassets.build.endpoints.json
-C:\Users\KIIT\source\repos\GenAIAPP.api\GenAIAPP.api\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
 C:\Users\KIIT\source\repos\GenAIAPP.api\GenAIAPP.api\obj\Debug\net8.0\GenAIAPP.AC6C9F07.Up2Date
 C:\Users\KIIT\source\repos\GenAIAPP.api\GenAIAPP.api\obj\Debug\net8.0\GenAIAPP.api.dll
 C:\Users\KIIT\source\repos\GenAIAPP.api\GenAIAPP.api\obj\Debug\net8.0\refint\GenAIAPP.api.dll
 C:\Users\KIIT\source\repos\GenAIAPP.api\GenAIAPP.api\obj\Debug\net8.0\GenAIAPP.api.pdb
 C:\Users\KIIT\source\repos\GenAIAPP.api\GenAIAPP.api\obj\Debug\net8.0\GenAIAPP.api.genruntimeconfig.cache
 C:\Users\KIIT\source\repos\GenAIAPP.api\GenAIAPP.api\obj\Debug\net8.0\ref\GenAIAPP.api.dll
+C:\Users\KIIT\source\repos\GenAIAPP.api\GenAIAPP.api\obj\Debug\net8.0\GenAIAPP.api.sourcelink.json
+C:\Users\KIIT\source\repos\GenAIAPP.api\GenAIAPP.api\bin\Debug\net8.0\Xabe.FFmpeg.dll

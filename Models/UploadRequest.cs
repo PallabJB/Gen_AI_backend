@@ -1,10 +1,8 @@
-﻿using System.Text.Json.Serialization;
-
-namespace GenAIAPP.api.Models
+﻿namespace GenAIAPP.api.Models
 {
-    public class OpenAiResponse
+    public class UploadRequest
     {
-        [JsonPropertyName("text")]
-        public string Text { get; set; }
+        public IFormFile File { get; set; }
+        public string OutputType { get; set; } // e.g., "test-case" or "user-story"
     }
 }
